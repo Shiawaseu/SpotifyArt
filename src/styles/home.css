@@ -1,0 +1,39 @@
+:root {
+    --green: rgb(36, 201, 21);
+    --greenish: #34a130;
+    --cyan: rgb(8, 208, 235);
+  }
+  
+  .magic-text {
+    animation: background-pan 3s linear infinite;
+    background: linear-gradient(
+        to right,
+        var(--green),
+        var(--greenish),
+        var(--cyan),
+        var(--green)
+    );
+    background-size: 200%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes background-pan {
+    from {
+        background-position: 0% center;
+    }
+  
+    to {
+        background-position: -200% center;
+    }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .fade-in.completed {
+    opacity: 1;
+  }
+  
