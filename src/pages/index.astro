@@ -1,0 +1,174 @@
+---
+import { AstroSeo } from '@astrolib/seo';
+import AnimatedShinyText from '@/components/magicui/animated-shiny-text';
+import Footer from '@/components/home/footer.astro';
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { cn } from '@/lib/utils';
+import { Separator } from '@/components/ui/separator';
+import { GitHubLogoIcon, SunIcon, MoonIcon, DiscordLogoIcon, Link2Icon, DownloadIcon } from '@radix-ui/react-icons';
+import '@/styles/home.css';
+---
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <AstroSeo
+      title="SpotifyArt"
+      description="Easily Download Full-Quality Spotify Song & Album Covers"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>SpotifyArt</title>
+  </head>
+  <body class="dark:bg-black/90">
+    <div class="z-10">
+      <p class="pointer-events-none absolute top-0 left-0 leading-relaxed magic-text text-transparent bg-gradient-to-r bg-clip-text from-green-500 to-cyan-500 font-black pt-3 pl-3">
+        SpotifyArt
+      </p>
+      <div class="absolute flex flex-row top-0 right-0 mt-2 mr-2">
+        <a href="https://discord.com/users/1115643711666278521" class="flex items-center justify-center h-8 w-8 rounded-full focus:outline-none focus:ring">
+          <DiscordLogoIcon className="stroke-black dark:stroke-white" />
+        </a>
+        <a href="https://github.com/Shiawaseu/SpotifyArt" class="flex items-center justify-center h-8 w-8 rounded-full focus:outline-none focus:ring">
+          <GitHubLogoIcon className="stroke-black dark:stroke-white" />
+        </a>
+        <button id = "toggle-theme-btn" aria-label="Toggle Theme" class="flex items-center justify-center h-8 w-8 rounded-full focus:outline-none focus:ring">
+          <MoonIcon id="moon-icon" className="stroke-white hidden" />
+          <SunIcon id="sun-icon" className="stroke-yellow-500" />
+        </button>
+      </div>
+      <div class="mt-12"></div>
+      <Separator className="absolute w-full h-[0.20rem] bg-black/50 dark:bg-black/20 stroke-2 z-10" orientation="horizontal" />
+    </div>
+    <div class="flex flex-col items-center justify-start h-screen w-full">
+      <div class="z-10 flex pt-20 min-h-[5rem] items-center justify-center">
+        <div
+          class={cn(
+            'group rounded-full border border-black dark:border-black/5 bg-neutral-100 text-black dark:text-base text-black transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800'
+          )}
+        >
+          <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
+            <GitHubLogoIcon className="mr-1 stroke-black dark:stroke-black/20" />
+            <a href="https://github.com/Shiawaseu/SpotifyArt">SpotifyArt is Open Source</a>
+          </AnimatedShinyText>
+        </div>
+      </div>
+      <h1 class="mt-4 pointer-events-none text-center leading-relaxed text-5xl magic-text text-transparent bg-gradient-to-r bg-clip-text from-green-500 to-cyan-500 font-black">
+        SpotifyArt
+      </h1>
+      <h2 class="font-semibold dark:text-white">
+        Easily Download Full-Quality Spotify Song & Album Covers
+      </h2>
+      <h2 class="font-semibold dark:text-white mt-5">
+        Supported links: <code class="text-green-500">Songs / Albums / Artists / Podcasts</code>
+      </h2>
+      <div class="flex flex-row mt-10">
+        <Input
+          id="spotify-url-input"
+          type="text"
+          placeholder="https://open.spotify.com/track/XXXXXXXXXXXXX"
+          className="w-64 bg-black/40 border border-black dark:border-white/40 font-semibold text-black/70 dark:text-white/50 rounded-xl"
+        />
+        <Button id="get-cover-btn" variant="outline" className="ml-4 rounded-xl bg-green-500 text-white font-black border border-black">
+          Get Cover
+        </Button>
+      </div>
+      <div class="flex flex-col fade-in mt-12 text-xl text-center mb-4">
+        <code id="song-name" class="font-semibold dark:text-white">Song Name</code>
+        <code class="text-red-500" id="artist-name" class="font-semibold dark:text-white">Artist Name</code>
+      </div>
+      <img id="cover-image" src="" width="500" height="500" alt="Cover Image" class="fade-in" />
+      <div class="flex flex-row mt-12 space-x-20 pb-12">
+        <Button id="download-btn" variant="outline" className="fade-in ml-4 rounded-xl bg-green-500 text-white font-black border border-black">
+         <DownloadIcon className='mr-1'/> Download Cover
+        </Button>
+        <Button id="copy-link-btn" variant="outline" className="fade-in ml-4 rounded-xl bg-blue-500 text-white font-black border border-black">
+          <Link2Icon className='mr-1'/> Copy Raw Link
+        </Button>
+      </div>
+      <Footer />
+    </div>
+    <script>
+      interface Artist {
+         name: string;
+         uri: string;
+      }
+      document.getElementById('get-cover-btn')?.addEventListener('click', async () => {
+        const spotifyUrlInput = document.getElementById('spotify-url-input') as HTMLInputElement;
+        const spotifyUrl = spotifyUrlInput?.value;
+    
+        if (!spotifyUrl) {
+          alert('Please enter a Spotify URL.');
+          return;
+        }
+    
+        try {
+          const response = await fetch('/getCover', {
+            method: 'GET',
+            headers: {
+              'x-spotify-url': spotifyUrl,
+              'x-resolution': '640',
+            },
+          });
+    
+          if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+          }
+    
+          const data = await response.json();
+    
+          const songNameElement = document.getElementById('song-name');
+          const artistNameElement = document.getElementById('artist-name');
+          const coverImageElement = document.getElementById('cover-image') as HTMLImageElement;
+    
+          if (songNameElement && artistNameElement && coverImageElement) {
+            songNameElement.textContent = data.songName;
+            artistNameElement.textContent = (data.artists && data.artists.map((artist: Artist) => artist.name).join(' & ')) || data.songName;
+            coverImageElement.src = data.coverArtUrl;
+    
+            const downloadBtn = document.getElementById('download-btn');
+            const copyLinkBtn = document.getElementById('copy-link-btn');
+    
+            downloadBtn?.addEventListener('click', () => {
+              if (data.coverArtUrl) {
+                window.open(data.coverArtUrl, '_blank')?.focus();
+              }
+            });
+    
+            copyLinkBtn?.addEventListener('click', () => {
+              navigator.clipboard.writeText(data.coverArtUrl)
+                .then(() => alert('Link copied to clipboard!'))
+                .catch(err => alert('Failed to copy link.'));
+            });
+          }
+  
+          const completedElements = document.querySelectorAll('.fade-in');
+          completedElements.forEach(el => el.classList.add('completed'));
+        } catch (error) {
+          console.error(error);
+          alert('Failed to fetch cover art. Please try again.');
+        }
+      });
+
+      document.getElementById('toggle-theme-btn')?.addEventListener('click', () => {
+        const htmlElement = document.documentElement;
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
+
+        if (htmlElement.classList.contains('dark')) {
+          htmlElement.classList.remove('dark');
+          htmlElement.classList.add('light');
+          if (moonIcon) moonIcon.classList.add('hidden');
+          if (sunIcon) sunIcon.classList.remove('hidden');
+        } else {
+          htmlElement.classList.remove('light');
+          htmlElement.classList.add('dark');
+          if (moonIcon) moonIcon.classList.remove('hidden');
+          if (sunIcon) sunIcon.classList.add('hidden');
+        }
+      });
+    </script>
+  </body>
+</html>
