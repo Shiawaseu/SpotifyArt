@@ -5,8 +5,9 @@ import Footer from '@/components/home/footer.astro';
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { cn } from '@/lib/utils';
+import Image from 'astro/components/Image.astro';
 import { Separator } from '@/components/ui/separator';
-import { GitHubLogoIcon, SunIcon, MoonIcon, DiscordLogoIcon, Link2Icon, DownloadIcon } from '@radix-ui/react-icons';
+import { GitHubLogoIcon, SunIcon, MoonIcon, Link2Icon, DownloadIcon } from '@radix-ui/react-icons';
 import '@/styles/home.css';
 ---
 
@@ -29,14 +30,15 @@ import '@/styles/home.css';
       </p>
       <div class="absolute flex flex-row top-0 right-0 mt-2 mr-2">
         <a href="https://discord.com/users/1115643711666278521" class="flex items-center justify-center h-8 w-8 rounded-full focus:outline-none focus:ring">
-          <DiscordLogoIcon className="stroke-black dark:stroke-white" />
+          <Image src="/discord.svg" alt="Discord" width={50} height={50}/>
         </a>
         <a href="https://github.com/Shiawaseu/SpotifyArt" class="flex items-center justify-center h-8 w-8 rounded-full focus:outline-none focus:ring">
-          <GitHubLogoIcon className="stroke-black dark:stroke-white" />
+          <Image src="/github.svg" alt="Github" width={25} height={25}/>
+        </a>
         </a>
         <button id = "toggle-theme-btn" aria-label="Toggle Theme" class="flex items-center justify-center h-8 w-8 rounded-full focus:outline-none focus:ring">
-          <MoonIcon id="moon-icon" className="stroke-white hidden" />
-          <SunIcon id="sun-icon" className="stroke-yellow-500" />
+          <MoonIcon id="moon-icon" className="stroke-white hidden" width={25} height={25} />
+          <SunIcon id="sun-icon" className="stroke-yellow-500" width={25} height={25}/>
         </button>
       </div>
       <div class="mt-12"></div>

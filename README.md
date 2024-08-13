@@ -2,6 +2,10 @@
 
 - Easily Download Full-Quality Spotify Song & Album Covers
 
+# Usage
+- [Website](https://spotify-art.vercel.app)
+- [IOS Shortcut](https://github.com/Shiawaseu/SpotifyArt/releases/tag/Release)
+
 ## Showcase
 ![alt text](/assets/Show.png)
 
