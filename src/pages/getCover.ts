@@ -55,13 +55,15 @@ async function fetchSpotifyData(embedUrl: string, resolution: number) {
     }
 
     const pageJson = JSON.parse(pageProps);
+    // New update to the embed page
 
+    // For now resolutions are useless, but I'll keep the functionality if Spotify ever provides different resolutions.
     const entity = pageJson.props.pageProps.state.data.entity;
+    const coverArt = entity.visualIdentity.image;
 
     const songName = entity.name;
     const artists = entity.artists;
 
-    const coverArt = entity.coverArt.sources;
 
     let coverArtUrl = '';
     for (const art of coverArt) {
