@@ -46,10 +46,16 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        filter: {
-          "blur-20": "blur(20px)",
-          "blur-25": "blur(25px)",
-           },
+      },
+      filter: {
+        "blur-20": "blur(20px)",
+        "blur-25": "blur(25px)",
+      },
+      backdropBlur: {
+        xs: "2px",
+      },
+      backgroundSize: {
+        "300%": "300%",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -73,11 +79,38 @@ module.exports = {
             "background-position": "calc(100% + var(--shimmer-width)) 0",
           },
         },
+        "gradient": {
+          "0%, 100%": {
+            "background-position": "0% 50%",
+          },
+          "50%": {
+            "background-position": "100% 50%",
+          },
+        },
+        "float": {
+          "0%, 100%": {
+            "transform": "translateY(0px)",
+          },
+          "50%": {
+            "transform": "translateY(-20px)",
+          },
+        },
+        "glow": {
+          "from": {
+            "box-shadow": "0 0 20px rgba(34, 197, 94, 0.5)",
+          },
+          "to": {
+            "box-shadow": "0 0 30px rgba(34, 197, 94, 0.8)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "shimmer": "shimmer 8s infinite",
+        "gradient": "gradient 8s linear infinite",
+        "float": "float 6s ease-in-out infinite",
+        "glow": "glow 2s ease-in-out infinite alternate",
       },
     },
   },

@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { cn } from '@/lib/utils';
 import Image from 'astro/components/Image.astro';
-import { Separator } from '@/components/ui/separator';
+
 import { GitHubLogoIcon, SunIcon, MoonIcon, Link2Icon, DownloadIcon } from '@radix-ui/react-icons';
 import '@/styles/home.css';
 ---
@@ -15,7 +15,7 @@ import '@/styles/home.css';
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <AstroSeo
       title="SpotifyArt"
       description="Easily Download Full-Quality Spotify Song & Album Covers"
@@ -23,80 +23,163 @@ import '@/styles/home.css';
     <meta name="generator" content={Astro.generator} />
     <title>SpotifyArt</title>
   </head>
-  <body class="dark:bg-black/90">
-    <div class="z-10">
-      <p class="pointer-events-none absolute top-0 left-0 leading-relaxed magic-text text-transparent bg-gradient-to-r bg-clip-text from-green-500 to-cyan-500 font-black pt-3 pl-3">
-        SpotifyArt
-      </p>
-      <div class="absolute flex flex-row top-0 right-0 mt-2 mr-2">
-        <a href="https://discord.com/users/1115643711666278521" class="flex items-center justify-center h-8 w-8 rounded-full focus:outline-none focus:ring">
-          <Image src="/discord.svg" alt="Discord" width={50} height={50}/>
-        </a>
-        <a href="https://github.com/Shiawaseu/SpotifyArt" class="flex items-center justify-center h-8 w-8 rounded-full focus:outline-none focus:ring">
-          <Image src="/github.svg" alt="Github" width={25} height={25}/>
-        </a>
-        </a>
-        <button id = "toggle-theme-btn" aria-label="Toggle Theme" class="flex items-center justify-center h-8 w-8 rounded-full focus:outline-none focus:ring">
-          <MoonIcon id="moon-icon" className="stroke-white hidden" width={25} height={25} />
-          <SunIcon id="sun-icon" className="stroke-yellow-500" width={25} height={25}/>
-        </button>
-      </div>
-      <div class="mt-12"></div>
-      <Separator className="absolute w-full h-[0.20rem] bg-black/50 dark:bg-black/20 stroke-2 z-10" orientation="horizontal" />
+  <body class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-black dark:to-gray-800 transition-all duration-300">
+    <!-- Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-green-500/10 via-cyan-500/5 to-transparent dark:from-green-500/5 dark:via-cyan-500/3 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-cyan-500/10 via-green-500/5 to-transparent dark:from-cyan-500/5 dark:via-green-500/3 rounded-full blur-3xl"></div>
     </div>
-    <div class="flex flex-col items-center justify-start h-screen w-full">
-      <div class="z-10 flex pt-20 min-h-[5rem] items-center justify-center">
-        <div
-          class={cn(
-            'group rounded-full border border-black dark:border-black/5 bg-neutral-100 text-black dark:text-base text-black transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800'
-          )}
-        >
-          <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
-            <GitHubLogoIcon className="mr-1 stroke-black dark:stroke-black/20" />
-            <a href="https://github.com/Shiawaseu/SpotifyArt">SpotifyArt is Open Source</a>
-          </AnimatedShinyText>
+
+    <!-- Header -->
+    <header class="relative z-50">
+      <nav class="flex items-center justify-between p-4 lg:p-6">
+                <!-- Logo -->        <div class="flex items-center">          <h1 class="text-xl lg:text-2xl font-bold magic-text text-transparent bg-gradient-to-r bg-clip-text from-green-500 to-cyan-500">            SpotifyArt          </h1>        </div>
+
+        <!-- Navigation -->
+        <div class="flex items-center space-x-3">
+          <a href="https://discord.com/users/1115643711666278521" 
+             class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/20 dark:bg-white/5 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-white/30 dark:hover:bg-white/10 transition-all duration-200 group">
+            <Image src="/discord.svg" alt="Discord" width={20} height={20} class="group-hover:scale-110 transition-transform duration-200"/>
+          </a>
+                    <a href="https://github.com/Shiawaseu/SpotifyArt"              class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/20 dark:bg-white/5 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-white/30 dark:hover:bg-white/10 transition-all duration-200 group">            <Image src="/github.svg" alt="Github" width={20} height={20} class="group-hover:scale-110 transition-transform duration-200 opacity-70 dark:opacity-100 dark:invert"/>          </a>
+          <button id="toggle-theme-btn" 
+                  aria-label="Toggle Theme" 
+                  class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/20 dark:bg-white/5 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-white/30 dark:hover:bg-white/10 transition-all duration-200 group">
+            <MoonIcon id="moon-icon" className="hidden group-hover:scale-110 transition-transform duration-200" width={20} height={20} />
+            <SunIcon id="sun-icon" className="text-yellow-500 group-hover:scale-110 transition-transform duration-200" width={20} height={20}/>
+          </button>
         </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 min-h-screen">
+      <div class="container mx-auto px-4 lg:px-6">
+        <!-- Hero Section -->
+        <section class="pt-16 lg:pt-24 pb-12 lg:pb-20">
+          <div class="text-center max-w-4xl mx-auto">
+            <!-- Badge -->
+            <div class="inline-flex items-center justify-center mb-8">
+              <div class={cn(
+                'group rounded-full border border-white/30 dark:border-white/10 bg-white/20 dark:bg-white/5 backdrop-blur-sm text-gray-800 dark:text-white transition-all ease-in hover:cursor-pointer hover:bg-white/30 dark:hover:bg-white/10 hover:scale-105'
+              )}>
+                <AnimatedShinyText className="inline-flex items-center justify-center px-6 py-3 transition ease-out hover:text-gray-600 hover:duration-300 dark:hover:text-gray-300">
+                  <GitHubLogoIcon className="mr-2 w-4 h-4" />
+                  <a href="https://github.com/Shiawaseu/SpotifyArt" class="text-sm font-medium">SpotifyArt is Open Source</a>
+                </AnimatedShinyText>
+              </div>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-5xl lg:text-7xl xl:text-8xl font-black mb-6 magic-text text-transparent bg-gradient-to-r bg-clip-text from-green-500 to-cyan-500 leading-tight">
+              SpotifyArt
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="text-xl lg:text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4 leading-relaxed">
+              Easily Download Full-Quality Spotify Song & Album Covers
+            </p>
+            
+            <!-- Supported Links -->
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-12">
+              Supported links: 
+              <code class="ml-2 px-3 py-1 bg-green-500/20 dark:bg-green-500/10 text-green-700 dark:text-green-400 rounded-lg font-mono text-sm border border-green-500/30">
+                Songs / Albums / Artists / Podcasts
+              </code>
+            </p>
+
+            <!-- Input Section -->
+            <div class="max-w-2xl mx-auto mb-16">
+              <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-500/20 to-cyan-500/20 rounded-2xl blur-xl"></div>
+                <div class="relative bg-white/40 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/50 dark:border-white/10 shadow-xl">
+                  <div class="flex flex-col sm:flex-row gap-4">
+                    <Input
+                      id="spotify-url-input"
+                      type="text"
+                      placeholder="https://open.spotify.com/track/XXXXXXXXXXXXX"
+                      className="flex-1 h-14 px-6 text-base bg-white/50 dark:bg-black/20 border-2 border-white/30 dark:border-white/10 rounded-xl font-medium text-gray-700 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-green-500/50 dark:focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
+                    />
+                    <Button id="get-cover-btn" 
+                            className="h-14 px-8 bg-gradient-to-r from-green-500 to-cyan-500 hover:from-green-600 hover:to-cyan-600 text-white font-bold rounded-xl border-0 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 whitespace-nowrap">
+                      Get Cover
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="pb-20">
+          <div class="max-w-4xl mx-auto">
+            <!-- Song Info -->
+            <div class="text-center mb-8 fade-in">
+              <h2 id="song-name" class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-white mb-2">Song Name</h2>
+              <p id="artist-name" class="text-lg lg:text-xl text-red-500 font-semibold">Artist Name</p>
+            </div>
+
+            <!-- Cover Image Container -->
+            <div class="flex justify-center mb-12">
+              <div class="relative fade-in">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-500/30 to-cyan-500/30 rounded-3xl blur-2xl transform scale-105"></div>
+                <div class="relative bg-white/20 dark:bg-white/5 backdrop-blur-sm rounded-3xl p-4 border border-white/30 dark:border-white/10 shadow-2xl">
+                  <img id="cover-image" 
+                       src="" 
+                       width="500" 
+                       height="500" 
+                       alt="Cover Image" 
+                       class="w-full max-w-md lg:max-w-lg rounded-2xl shadow-xl" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in">
+              <Button id="download-btn" 
+                      className="w-full sm:w-auto h-14 px-8 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold rounded-xl border-0 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                <DownloadIcon className="mr-2 w-5 h-5"/> 
+                Download Cover
+              </Button>
+              <Button id="copy-link-btn" 
+                      className="w-full sm:w-auto h-14 px-8 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold rounded-xl border-0 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                <Link2Icon className="mr-2 w-5 h-5"/> 
+                Copy Raw Link
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <Footer />
       </div>
-      <h1 class="mt-4 pointer-events-none text-center leading-relaxed text-5xl magic-text text-transparent bg-gradient-to-r bg-clip-text from-green-500 to-cyan-500 font-black">
-        SpotifyArt
-      </h1>
-      <h2 class="font-semibold dark:text-white">
-        Easily Download Full-Quality Spotify Song & Album Covers
-      </h2>
-      <h2 class="font-semibold dark:text-white mt-5">
-        Supported links: <code class="text-green-500">Songs / Albums / Artists / Podcasts</code>
-      </h2>
-      <div class="flex flex-row mt-10">
-        <Input
-          id="spotify-url-input"
-          type="text"
-          placeholder="https://open.spotify.com/track/XXXXXXXXXXXXX"
-          className="w-64 bg-black/40 border border-black dark:border-white/40 font-semibold text-black/70 dark:text-white/50 rounded-xl"
-        />
-        <Button id="get-cover-btn" variant="outline" className="ml-4 rounded-xl bg-green-500 text-white font-black border border-black">
-          Get Cover
-        </Button>
-      </div>
-      <div class="flex flex-col fade-in mt-12 text-xl text-center mb-4">
-        <code id="song-name" class="font-semibold dark:text-white">Song Name</code>
-        <code class="text-red-500" id="artist-name" class="font-semibold dark:text-white">Artist Name</code>
-      </div>
-      <img id="cover-image" src="" width="500" height="500" alt="Cover Image" class="fade-in" />
-      <div class="flex flex-row mt-12 space-x-20 pb-12">
-        <Button id="download-btn" variant="outline" className="fade-in ml-4 rounded-xl bg-green-500 text-white font-black border border-black">
-         <DownloadIcon className='mr-1'/> Download Cover
-        </Button>
-        <Button id="copy-link-btn" variant="outline" className="fade-in ml-4 rounded-xl bg-blue-500 text-white font-black border border-black">
-          <Link2Icon className='mr-1'/> Copy Raw Link
-        </Button>
-      </div>
-      <Footer />
-    </div>
+    </main>
+
     <script>
       interface Artist {
          name: string;
          uri: string;
       }
+
+      // Global variable to store current cover art URL
+      let currentCoverArtUrl = '';
+
+      // Set up event listeners once for download and copy buttons
+      document.getElementById('download-btn')?.addEventListener('click', () => {
+        if (currentCoverArtUrl) {
+          window.open(currentCoverArtUrl, '_blank')?.focus();
+        }
+      });
+
+      document.getElementById('copy-link-btn')?.addEventListener('click', () => {
+        if (currentCoverArtUrl) {
+          navigator.clipboard.writeText(currentCoverArtUrl)
+            .then(() => alert('Link copied to clipboard!'))
+            .catch(err => alert('Failed to copy link.'));
+        }
+      });
+
       document.getElementById('get-cover-btn')?.addEventListener('click', async () => {
         const spotifyUrlInput = document.getElementById('spotify-url-input') as HTMLInputElement;
         const spotifyUrl = spotifyUrlInput?.value;
@@ -130,20 +213,8 @@ import '@/styles/home.css';
             artistNameElement.textContent = (data.artists && data.artists.map((artist: Artist) => artist.name).join(' & ')) || data.songName;
             coverImageElement.src = data.coverArtUrl;
     
-            const downloadBtn = document.getElementById('download-btn');
-            const copyLinkBtn = document.getElementById('copy-link-btn');
-    
-            downloadBtn?.addEventListener('click', () => {
-              if (data.coverArtUrl) {
-                window.open(data.coverArtUrl, '_blank')?.focus();
-              }
-            });
-    
-            copyLinkBtn?.addEventListener('click', () => {
-              navigator.clipboard.writeText(data.coverArtUrl)
-                .then(() => alert('Link copied to clipboard!'))
-                .catch(err => alert('Failed to copy link.'));
-            });
+            // Update the global variable with the new cover art URL
+            currentCoverArtUrl = data.coverArtUrl;
           }
   
           const completedElements = document.querySelectorAll('.fade-in');
