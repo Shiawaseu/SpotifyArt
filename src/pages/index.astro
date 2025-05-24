@@ -161,6 +161,25 @@ import '@/styles/home.css';
          name: string;
          uri: string;
       }
+
+      // Global variable to store current cover art URL
+      let currentCoverArtUrl = '';
+
+      // Set up event listeners once for download and copy buttons
+      document.getElementById('download-btn')?.addEventListener('click', () => {
+        if (currentCoverArtUrl) {
+          window.open(currentCoverArtUrl, '_blank')?.focus();
+        }
+      });
+
+      document.getElementById('copy-link-btn')?.addEventListener('click', () => {
+        if (currentCoverArtUrl) {
+          navigator.clipboard.writeText(currentCoverArtUrl)
+            .then(() => alert('Link copied to clipboard!'))
+            .catch(err => alert('Failed to copy link.'));
+        }
+      });
+
       document.getElementById('get-cover-btn')?.addEventListener('click', async () => {
         const spotifyUrlInput = document.getElementById('spotify-url-input') as HTMLInputElement;
         const spotifyUrl = spotifyUrlInput?.value;
@@ -194,20 +213,8 @@ import '@/styles/home.css';
             artistNameElement.textContent = (data.artists && data.artists.map((artist: Artist) => artist.name).join(' & ')) || data.songName;
             coverImageElement.src = data.coverArtUrl;
     
-            const downloadBtn = document.getElementById('download-btn');
-            const copyLinkBtn = document.getElementById('copy-link-btn');
-    
-            downloadBtn?.addEventListener('click', () => {
-              if (data.coverArtUrl) {
-                window.open(data.coverArtUrl, '_blank')?.focus();
-              }
-            });
-    
-            copyLinkBtn?.addEventListener('click', () => {
-              navigator.clipboard.writeText(data.coverArtUrl)
-                .then(() => alert('Link copied to clipboard!'))
-                .catch(err => alert('Failed to copy link.'));
-            });
+            // Update the global variable with the new cover art URL
+            currentCoverArtUrl = data.coverArtUrl;
           }
   
           const completedElements = document.querySelectorAll('.fade-in');
