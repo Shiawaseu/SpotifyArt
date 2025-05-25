@@ -7,7 +7,12 @@
 - [IOS Shortcut](https://github.com/Shiawaseu/SpotifyArt/releases/tag/Release)
 - [IOS Shortcut (RoutineHub)](https://www.routinehub.co/shortcut/19560/)
 ## Showcase
+<details>
+<summary>Showcase</summary>
+
 ![alt text](/assets/Show.png)
+
+</details>
 
 ## Commands
 
