@@ -154,3 +154,18 @@
     }
   }
   
+  #main-header {
+    border-bottom: 1px solid transparent;
+  }
+
+  #main-header.scrolled {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(120,120,120,0.12);
+    }
+
+  html.dark #main-header.scrolled {
+    background: rgba(20,20,20,0.6);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    }

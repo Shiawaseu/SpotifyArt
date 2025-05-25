@@ -24,27 +24,27 @@ import '@/styles/home.css';
     <title>SpotifyArt</title>
   </head>
   <body class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-black dark:to-gray-800 transition-all duration-300">
-    <!-- Background Elements -->
+
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
       <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-green-500/10 via-cyan-500/5 to-transparent dark:from-green-500/5 dark:via-cyan-500/3 rounded-full blur-3xl"></div>
       <div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-cyan-500/10 via-green-500/5 to-transparent dark:from-cyan-500/5 dark:via-green-500/3 rounded-full blur-3xl"></div>
     </div>
 
-    <!-- Header -->
-    <header class="relative z-50">
-      <nav class="flex items-center justify-between p-4 lg:p-6">
-                <!-- Logo -->        <div class="flex items-center">          <h1 class="text-xl lg:text-2xl font-bold magic-text text-transparent bg-gradient-to-r bg-clip-text from-green-500 to-cyan-500">            SpotifyArt          </h1>        </div>
 
-        <!-- Navigation -->
+    <header id="main-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b border-transparent">
+      <nav class="flex items-center justify-between p-4 lg:p-6">
+        <div class="flex items-center">
+          <h1 class="text-xl lg:text-2xl font-bold magic-text text-transparent bg-gradient-to-r bg-clip-text from-green-500 to-cyan-500">SpotifyArt</h1>
+        </div>
         <div class="flex items-center space-x-3">
           <a href="https://discord.com/users/1115643711666278521" 
-             class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/20 dark:bg-white/5 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-white/30 dark:hover:bg-white/10 transition-all duration-200 group">
+             class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/20 dark:bg-white/5 backdrop-blur-sm border  dark:border-white/10 hover:bg-white/30 dark:hover:bg-white/10 transition-all duration-200 group">
             <Image src="/discord.svg" alt="Discord" width={20} height={20} class="group-hover:scale-110 transition-transform duration-200"/>
           </a>
-                    <a href="https://github.com/Shiawaseu/SpotifyArt"              class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/20 dark:bg-white/5 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-white/30 dark:hover:bg-white/10 transition-all duration-200 group">            <Image src="/github.svg" alt="Github" width={20} height={20} class="group-hover:scale-110 transition-transform duration-200 opacity-70 dark:opacity-100 dark:invert"/>          </a>
+                    <a href="https://github.com/Shiawaseu/SpotifyArt"              class="flex items-center justify-center w-10 h-10 rounded-xl dark:bg-white/5 backdrop-blur-sm border dark:border-white/10 hover:bg-white/30 dark:hover:bg-white/10 transition-all duration-200 group">            <Image src="/github.svg" alt="Github" width={20} height={20} class="group-hover:scale-110 transition-transform duration-200 opacity-70 dark:opacity-100 dark:invert"/>          </a>
           <button id="toggle-theme-btn" 
                   aria-label="Toggle Theme" 
-                  class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/20 dark:bg-white/5 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:bg-white/30 dark:hover:bg-white/10 transition-all duration-200 group">
+                  class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/20 dark:bg-white/5 backdrop-blur-sm border  dark:border-white/10 hover:bg-white/30 dark:hover:bg-white/10 transition-all duration-200 group">
             <MoonIcon id="moon-icon" className="hidden group-hover:scale-110 transition-transform duration-200" width={20} height={20} />
             <SunIcon id="sun-icon" className="text-yellow-500 group-hover:scale-110 transition-transform duration-200" width={20} height={20}/>
           </button>
@@ -52,16 +52,13 @@ import '@/styles/home.css';
       </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="relative z-10 min-h-screen">
       <div class="container mx-auto px-4 lg:px-6">
-        <!-- Hero Section -->
         <section class="pt-16 lg:pt-24 pb-12 lg:pb-20">
           <div class="text-center max-w-4xl mx-auto">
-            <!-- Badge -->
             <div class="inline-flex items-center justify-center mb-8">
               <div class={cn(
-                'group rounded-full border border-white/30 dark:border-white/10 bg-white/20 dark:bg-white/5 backdrop-blur-sm text-gray-800 dark:text-white transition-all ease-in hover:cursor-pointer hover:bg-white/30 dark:hover:bg-white/10 hover:scale-105'
+                'group rounded-full border  dark:border-white/10 bg-white/20 dark:bg-white/5 backdrop-blur-sm text-gray-800 dark:text-white transition-all ease-in hover:cursor-pointer hover:bg-white/30 dark:hover:bg-white/10 hover:scale-105'
               )}>
                 <AnimatedShinyText className="inline-flex items-center justify-center px-6 py-3 transition ease-out hover:text-gray-600 hover:duration-300 dark:hover:text-gray-300">
                   <GitHubLogoIcon className="mr-2 w-4 h-4" />
@@ -70,25 +67,21 @@ import '@/styles/home.css';
               </div>
             </div>
 
-            <!-- Main Heading -->
-            <h1 class="text-5xl lg:text-7xl xl:text-8xl font-black mb-6 magic-text text-transparent bg-gradient-to-r bg-clip-text from-green-500 to-cyan-500 leading-tight">
+            <h1 class="text-5xl lg:text-7xl xl:text-8xl font-black pb-8 pointer-events-none magic-text text-transparent bg-gradient-to-r bg-clip-text from-green-500 to-cyan-500 leading-tight">
               SpotifyArt
             </h1>
             
-            <!-- Subtitle -->
             <p class="text-xl lg:text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4 leading-relaxed">
               Easily Download Full-Quality Spotify Song & Album Covers
             </p>
             
-            <!-- Supported Links -->
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-12">
               Supported links: 
-              <code class="ml-2 px-3 py-1 bg-green-500/20 dark:bg-green-500/10 text-green-700 dark:text-green-400 rounded-lg font-mono text-sm border border-green-500/30">
+              <code class="ml-2 px-3 py-1 bg-green-500/20 dark:bg-green-500/10 text-green-700 dark:text-green-400 rounded-lg font-mono text-sm border border-green-500/30 rounded-xl">
                 Songs / Albums / Artists / Podcasts
               </code>
             </p>
 
-            <!-- Input Section -->
             <div class="max-w-2xl mx-auto mb-16">
               <div class="relative">
                 <div class="absolute inset-0 bg-gradient-to-r from-green-500/20 to-cyan-500/20 rounded-2xl blur-xl"></div>
@@ -111,16 +104,13 @@ import '@/styles/home.css';
           </div>
         </section>
 
-        <!-- Results Section -->
         <section class="pb-20">
           <div class="max-w-4xl mx-auto">
-            <!-- Song Info -->
             <div class="text-center mb-8 fade-in">
               <h2 id="song-name" class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-white mb-2">Song Name</h2>
               <p id="artist-name" class="text-lg lg:text-xl text-red-500 font-semibold">Artist Name</p>
             </div>
 
-            <!-- Cover Image Container -->
             <div class="flex justify-center mb-12">
               <div class="relative fade-in">
                 <div class="absolute inset-0 bg-gradient-to-r from-green-500/30 to-cyan-500/30 rounded-3xl blur-2xl transform scale-105"></div>
@@ -135,7 +125,6 @@ import '@/styles/home.css';
               </div>
             </div>
 
-            <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in">
               <Button id="download-btn" 
                       className="w-full sm:w-auto h-14 px-8 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold rounded-xl border-0 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
@@ -151,7 +140,6 @@ import '@/styles/home.css';
           </div>
         </section>
 
-        <!-- Footer -->
         <Footer />
       </div>
     </main>
@@ -162,10 +150,8 @@ import '@/styles/home.css';
          uri: string;
       }
 
-      // Global variable to store current cover art URL
       let currentCoverArtUrl = '';
 
-      // Set up event listeners once for download and copy buttons
       document.getElementById('download-btn')?.addEventListener('click', () => {
         if (currentCoverArtUrl) {
           window.open(currentCoverArtUrl, '_blank')?.focus();
@@ -183,12 +169,14 @@ import '@/styles/home.css';
       document.getElementById('get-cover-btn')?.addEventListener('click', async () => {
         const spotifyUrlInput = document.getElementById('spotify-url-input') as HTMLInputElement;
         const spotifyUrl = spotifyUrlInput?.value;
+        const getBtn = document.getElementById('get-cover-btn') as HTMLButtonElement;
     
         if (!spotifyUrl) {
           alert('Please enter a Spotify URL.');
           return;
         }
-    
+        getBtn.disabled = true;
+        getBtn.textContent = 'Loading...';
         try {
           const response = await fetch('/getCover', {
             method: 'GET',
@@ -213,35 +201,78 @@ import '@/styles/home.css';
             artistNameElement.textContent = (data.artists && data.artists.map((artist: Artist) => artist.name).join(' & ')) || data.songName;
             coverImageElement.src = data.coverArtUrl;
     
-            // Update the global variable with the new cover art URL
             currentCoverArtUrl = data.coverArtUrl;
           }
   
           const completedElements = document.querySelectorAll('.fade-in');
           completedElements.forEach(el => el.classList.add('completed'));
+          getBtn.disabled = false;
+          getBtn.textContent = 'Get Cover';
         } catch (error) {
           console.error(error);
+          getBtn.disabled = false;
+          getBtn.textContent = 'Get Cover';
           alert('Failed to fetch cover art. Please try again.');
         }
       });
 
-      document.getElementById('toggle-theme-btn')?.addEventListener('click', () => {
-        const htmlElement = document.documentElement;
-        const moonIcon = document.getElementById('moon-icon');
-        const sunIcon = document.getElementById('sun-icon');
+      const themeBtn = document.getElementById('toggle-theme-btn');
+      const html = document.documentElement;
+      const moonIcon = document.getElementById('moon-icon');
+      const sunIcon = document.getElementById('sun-icon');
 
-        if (htmlElement.classList.contains('dark')) {
-          htmlElement.classList.remove('dark');
-          htmlElement.classList.add('light');
-          if (moonIcon) moonIcon.classList.add('hidden');
-          if (sunIcon) sunIcon.classList.remove('hidden');
+      function setTheme(isDark: boolean) {
+        html.classList.toggle('dark', isDark);
+        moonIcon?.classList.toggle('hidden', isDark);
+        sunIcon?.classList.toggle('hidden', !isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      }
+
+      function getPreferredTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') return true;
+        if (savedTheme === 'light') return false;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+
+      function toggleTheme() {
+        const isDark = html.classList.contains('dark');
+        setTheme(!isDark);
+      }
+
+      setTheme(getPreferredTheme());
+
+      themeBtn?.addEventListener('click', toggleTheme, getPreferredTheme());
+
+
+      // Topbar blur and background on scroll
+      const header = document.getElementById('main-header');
+      function handleHeaderScroll() {
+        if (window.scrollY > 8) {
+          header?.classList.add('scrolled');
         } else {
-          htmlElement.classList.remove('light');
-          htmlElement.classList.add('dark');
-          if (moonIcon) moonIcon.classList.remove('hidden');
-          if (sunIcon) sunIcon.classList.add('hidden');
+          header?.classList.remove('scrolled');
         }
-      });
+      }
+      window.addEventListener('scroll', handleHeaderScroll);
+      handleHeaderScroll();
     </script>
+
+    <style>
+      /* Add styles for the scrolled header */
+      #main-header {
+        border-bottom: 1px solid transparent;
+      }
+      #main-header.scrolled {
+        background: rgba(255,255,255,0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(120,120,120,0.12);
+      }
+      html.dark #main-header.scrolled {
+        background: rgba(20,20,20,0.6);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+    </style>
   </body>
 </html>
